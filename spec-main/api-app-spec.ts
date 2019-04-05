@@ -84,12 +84,28 @@ describe('app module', () => {
     })
   })
 
+  describe('app.name', () => {
+    it('returns the name field of package.json', () => {
+      expect(app.name).to.equal('Electron Test Main')
+    })
+
+    it('overrides the name', () => {
+      expect(app.name).to.equal('Electron Test Main')
+      app.name = 'test-name'
+
+      expect(app.name).to.equal('test-name')
+      app.name = 'Electron Test'
+    })
+  })
+
+  // TODO(codebytere): remove when propertyification is complete
   describe('app.getName()', () => {
     it('returns the name field of package.json', () => {
       expect(app.getName()).to.equal('Electron Test Main')
     })
   })
 
+  // TODO(codebytere): remove when propertyification is complete
   describe('app.setName(name)', () => {
     it('overrides the name', () => {
       expect(app.getName()).to.equal('Electron Test Main')
