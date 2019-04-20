@@ -79,9 +79,16 @@ steps:
   displayName: 'Setup node headers'
 
 - script: |
-    cd src\electron
+    cd src
+    set npm_config_nodedir=%cd%/out/Default/gen/node_headers
+    cd electron\spec
+    npm install --verbose
+  displayName: Install test modules
+
+- script: |
+    cd src
     echo "Running test suite"
-    npm run test -- --ci --enable-logging
+    .\out\Default\electron electron\spec --ci --enable-logging
     echo "Done running test suite"
   displayName: 'Run Electron tests'
 
